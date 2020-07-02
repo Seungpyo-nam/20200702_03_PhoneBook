@@ -18,6 +18,16 @@ public class User {
 //		현재 나이를 계산해서 리턴
 		return now.get(Calendar.YEAR) - this.birthYear + 1;
 	}
+	
+//	변수 자체를 찍어도 가공된 문구가 나오도록
+	@Override
+	public String toString() {
+//		가공된 양식의 string을 이 메소드의 결과로 지정
+//		string.format으로 가공한 문장을 리턴하자.
+		
+		return String.format("%s(%d세) : %s", this.name, this.getKoreanAge(), this.phoneNum);
+		
+	}
 		
 	
 	public User(String name, String phoneNum, int birthYear) {
