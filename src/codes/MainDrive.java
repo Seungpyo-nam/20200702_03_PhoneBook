@@ -12,6 +12,8 @@ import java.util.Scanner;
 
 import javax.print.DocFlavor.STRING;
 
+import codes.datas.User;
+
 public class MainDrive {
 	
 	public static void main(String[] args) {
@@ -127,20 +129,12 @@ public class MainDrive {
 //				string을 int로 변환. > wrapper 클래서 > integer클래스 활용.
 				int userBirthYear = Integer.parseInt(userInfos[2]);
 				
-//				생년을 나이로 변환 = 매 년 정확한 나이가 나오도록 하고싶다.
+//				이름/폰번/나이를 가지고 user객체로 만들자.
+				User user = new User(userName, userPhoneNum, userBirthYear);
 				
-//				캘린더 객체 생성 > 현지 시간이 기본값으로 now에 들어감.
-				Calendar now = Calendar.getInstance();
-				
-//				년도를 > 현재 날짜에서 get(Calendar.YEAR)로 뽑아내자
-				int userAge = now.get(Calendar.YEAR) - userBirthYear +1;
-				
-//				세 개의 데이터를 가지고 양식을 가공
-				String userInfoMessage = String.format("%s(%d세) : %s",userName,userAge,userPhoneNum);
-				
-				System.out.println(userInfoMessage);
-				
-				
+//				만들어낸 user 출력 > 유저 클래스의 toString 오버라이딩
+//				양식으로 가공하자.
+				System.out.println(user);
 				
 			}
 			
