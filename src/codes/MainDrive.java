@@ -1,7 +1,10 @@
 package codes;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -37,7 +40,7 @@ public class MainDrive {
 			System.out.println("=====================");
 			
 //			실제로 메뉴 입력 받기
-			System.out.println("메뉴 선택 : ");
+			System.out.print("메뉴 선택 : ");
 			int inputMenu = myScan.nextInt();
 			
 //			입력값 확인
@@ -54,7 +57,8 @@ public class MainDrive {
 				
 			}else if( inputMenu == 2) {
 				
-//				전화번호 전체 조회기능
+//				전화번호 전체 조회 기능 실행
+				readAllPhoneNum();
 				
 			}else {
 				
@@ -72,6 +76,75 @@ public class MainDrive {
 		
 	}
 	
+	//파일에 저장된 전화번호 목록 출력
+	public static void readAllPhoneNum() {
+//		파일에 저장된 데이터 > 자바 프로그램에서 활용. ( File INPUT)
+//		FileReader / BufferedReader 활용.
+		
+//		불러올 파일의 위치 지정. > 저장할 때 사용하는 파일명과 동일하게.
+		File file = new File("phoneBook.txt");
+		
+
+		try {
+//			파일을 실제로 불러오는 클래스
+			FileReader fr = new FileReader(file);
+			
+//			한줄씩 한꺼번에 불러오게 하는 클래스 > fr은 한글짜씩. fr을 보조해서 한문장 로드.
+			BufferedReader br = new BufferedReader(fr);
+			
+//			모든 연락처를 불러올때까지 반복
+			while (true) {
+				
+//				한 줄을 통째로 불러오기 > IOException 처리 필요
+				String line = br.readLine();
+				
+//				불러온 내용을 검사. null 인지.
+				if(line ==null ) {
+					
+//					더이상 불러올 내용이 없어서 null이 들어옴.
+//					다 읽었다! 라는 뜻  > 무한반복 탈출.
+					System.out.println("연락처를 모두 읽어왔습니다.");
+					break;
+				}
+				
+//				이 줄의 코드가 실행된다 : break를 안만남  > 불러온 내용이 null이 아님.
+//				실제로 파일에 적혀있던 한줄이 line에 담겨있다.
+				
+				System.out.println(line);
+				
+				
+			}
+			
+//			while을 빠져나옴 : 파일을 다 읽었으므로 빠져나왔다.
+//			파일 사용을 종료. br부터 닫고 fr 닫자
+			
+			br.close();
+			fr.close();
+			
+			
+		} catch (FileNotFoundException e) {
+			
+//			읽어올 타입이 없는 경우(삭제 or 아직 안만든 경우)
+			System.out.println("불러올 파일이 없습니다.");
+			System.out.println("연락처를 저장하고 다시 시도해주세요.");
+
+		} catch (IOException e) {
+			
+			System.out.println("연락처를 읽어오는 중에 문제가 발생했습니다.");
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	//전화번호 + 이름 + 생년정보 추가 메소드
 	public static void addPhoneNumInfoToFile() {
 		
@@ -79,13 +152,13 @@ public class MainDrive {
 		Scanner myScan = new Scanner(System.in);
 		
 //		이름 폰번 생년 순으로 저장 > string string int 순서
-		System.out.println("이름 입력 : ");
+		System.out.print("이름 입력 : ");
 		String name = myScan.nextLine();
 		
-		System.out.println("전화번호 입력 : ");
+		System.out.print("전화번호 입력 : ");
 		String phoneNum = myScan.nextLine();
 		
-		System.out.println("생년 입력 : ");
+		System.out.print("생년 입력 : ");
 		int birthYear = myScan.nextInt();
 		
 		
