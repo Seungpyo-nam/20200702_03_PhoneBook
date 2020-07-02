@@ -43,8 +43,8 @@ public class MainDrive {
 				
 			}else if (inputMenu ==1) {
 				
-//				전화번호부 추가 기능
-				
+//				전화번호 등록 기능 실행
+				addPhoneNumInfoToFile();
 				
 			}else if( inputMenu == 2) {
 				
@@ -66,5 +66,26 @@ public class MainDrive {
 		
 	}
 	
+	//전화번호 + 이름 + 생년정보 추가 메소드
+	public static void addPhoneNumInfoToFile() {
+		
+//		저장할 데이터를 입력받자
+		Scanner myScan = new Scanner(System.in);
+		
+//		이름 폰번 생년 순으로 저장 > string string int 순서
+		System.out.println("이름 입력 : ");
+		String name = myScan.nextLine();
+		
+		System.out.println("전화번호 입력 : ");
+		String phoneNum = myScan.nextLine();
+		
+		System.out.println("생년 입력 : ");
+		int birthYear = myScan.nextInt();
+		
+		
+//		변수에 저장한 데이터를 묶어서 파일로 저장
+//		java > 보조기억장치 내보내기 > 파일출력 (save)
+		
+	}
 
 }
